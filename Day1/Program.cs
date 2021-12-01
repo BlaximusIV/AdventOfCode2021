@@ -6,15 +6,17 @@ using (var sr = new StreamReader(inputPath))
     while (!sr.EndOfStream)
         depthReadings.Add(int.Parse(sr.ReadLine()));
 
-int? cursor = null;
 var depthIncreaseCount = 0;
 
-foreach(var reading in depthReadings)
+// offset to take into account sliding window size
+const int windowSize = 3;
+for (int i = 0; i < depthReadings.Count - windowSize; i++)
 {
-    if (reading > cursor)
-        depthIncreaseCount++;
+    var windowOneSum = depthReadings.GetRange(i, windowSize).Sum();
+    var windowTwoSum = depthReadings.GetRange(i + 1, windowSize).Sum();
 
-    cursor = reading;
+    if (windowTwoSum > windowOneSum)
+        depthIncreaseCount++;
 }
 
 Console.WriteLine($"{depthIncreaseCount} increasing readings");
