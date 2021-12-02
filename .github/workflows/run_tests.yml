@@ -20,14 +20,14 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Change Directory
-      run: cd /Day1
-
     - name: Install dependencies
+      working-directory: ./Day1
       run: dotnet restore
       
     - name: Build
+      working-directory: ./Day1
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
+      working-directory: ./Day1
       run: dotnet test --no-restore --verbosity normal
