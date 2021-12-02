@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day1", "Day1.csproj", "{C0BB72EA-38E6-42BD-8DBD-ED2185B38BF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day1", "Day1\Day1.csproj", "{4B9A6061-0789-4442-B697-82BADFE84230}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day1.Tests", "Day1.Tests\Day1.Tests.csproj", "{5A710C3A-CF28-49EB-8EA0-D63D58950363}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C0BB72EA-38E6-42BD-8DBD-ED2185B38BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0BB72EA-38E6-42BD-8DBD-ED2185B38BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0BB72EA-38E6-42BD-8DBD-ED2185B38BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0BB72EA-38E6-42BD-8DBD-ED2185B38BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B9A6061-0789-4442-B697-82BADFE84230}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B9A6061-0789-4442-B697-82BADFE84230}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B9A6061-0789-4442-B697-82BADFE84230}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B9A6061-0789-4442-B697-82BADFE84230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A710C3A-CF28-49EB-8EA0-D63D58950363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A710C3A-CF28-49EB-8EA0-D63D58950363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A710C3A-CF28-49EB-8EA0-D63D58950363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A710C3A-CF28-49EB-8EA0-D63D58950363}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A7BF02E8-1E51-4369-A7FC-3F9E47E393EA}
+		SolutionGuid = {86F0CD1F-6B39-4BBA-9E65-82BC0C944EE1}
 	EndGlobalSection
 EndGlobal

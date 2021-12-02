@@ -14,7 +14,6 @@ static (string, int) parseDirection(string direction)
     return (directionDetails[0], int.Parse(directionDetails[1]));
 }
 
-
-var distance = TravelSimulator.FindDistanceTravelled(pathDirections);
+var distance = TravelSimulator.FindDistanceTravelledByAim(pathDirections);
 
 Console.WriteLine($"Total Distance Travelled: {distance}");
