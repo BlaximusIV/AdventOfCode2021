@@ -1,11 +1,10 @@
-﻿using Day2;
+using Day2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Day2Tests
 {
     [TestClass]
-    public class Day2UnitTests
+    public class TravelSimulatorTests
     {
         [TestMethod]
         public void TestDistanceTravelled()
