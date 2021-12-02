@@ -1,5 +1,4 @@
-﻿
-#region Ingest Data
+﻿using Day2;
 
 var pathDirections = new List<(string direction, int magnitude)>();
 
@@ -15,30 +14,7 @@ static (string, int) parseDirection(string direction)
     return (directionDetails[0], int.Parse(directionDetails[1]));
 }
 
-#endregion
 
-#region Simulate Travel
+var distance = TravelSimulator.FindDistanceTravelled(pathDirections);
 
-// The only directions given
-const string up = nameof(up);
-const string down = nameof(down);
-const string forward = nameof(forward);
-
-var range = 0;
-var depth = 0;
-
-foreach (var step in pathDirections)
-{
-    if (step.direction == up)
-        depth -= step.magnitude;
-
-    else if (step.direction == down)
-        depth += step.magnitude;
-
-    else 
-        range += step.magnitude;
-}
-
-#endregion
-
-Console.WriteLine($"Final Depth: {depth} Final Horizontal Range: {range} Total Distance Travelled: {depth * range}");
+Console.WriteLine($"Total Distance Travelled: {distance}");
