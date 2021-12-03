@@ -31,7 +31,7 @@ jobs:
     
     - name: Test
       working-directory: ./Day1
-      run: dotnet test --no-restore --verbosity m
+      run: dotnet test --no-restore --verbosity q
 
   Test_Day_2:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
     
     - name: Test
       working-directory: ./Day2
-      run: dotnet test --no-restore --verbosity m
+      run: dotnet test --no-restore --verbosity q
   
   Test_Day_3:
     runs-on: ubuntu-latest
@@ -77,4 +77,4 @@ jobs:
     
     - name: Test
       working-directory: ./Day3
-      run: dotnet test --no-restore --verbosity m
+      run: dotnet test --no-restore --verbosity q
