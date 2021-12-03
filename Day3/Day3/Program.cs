@@ -8,7 +8,9 @@ using (var sr = new StreamReader(inputPath))
     while (!sr.EndOfStream)
         binaryStrings.Add(sr.ReadLine());
 
+var powerConsumption = ReportAnalyzer.FindPowerConsumption(binaryStrings);
 var lifeSupportRating = ReportAnalyzer.FindLifeSupportRating(binaryStrings);
 
+Console.WriteLine($"Power consumption: {powerConsumption}");
 Console.WriteLine($"Life support rating: {lifeSupportRating}");
 
