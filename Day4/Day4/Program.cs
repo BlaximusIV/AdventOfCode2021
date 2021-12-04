@@ -11,5 +11,8 @@ using (var sr = new StreamReader(inputPath))
 var simulator = new BingoSimulator(inputStrings);
 
 var winningScore = simulator.FindWinningScore();
+var finalWinningScore = simulator.FindLastWinningBoardScore();
 
 Console.WriteLine($"Winning Score: {winningScore}");
+Console.WriteLine($"Final Winning Score: {finalWinningScore}");
+

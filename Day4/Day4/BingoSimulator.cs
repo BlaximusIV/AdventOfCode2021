@@ -13,6 +13,7 @@ namespace Day4
 
         public BingoSimulator(List<string> input)
         {
+            // Used For Debugging purposes
             int boardId = 1;
             List<string> boardRows = new List<string>();
             for (int i = 0; i < input.Count; i++)
@@ -50,6 +51,45 @@ namespace Day4
                 }
 
             throw new Exception("No winner found with the given list of picked numbers");
+        }
+
+        public long FindLastWinningBoardScore()
+        {
+            var filterableBoards = bingoBoards.Select(b => b);
+
+            int index = 0;
+            bool lastWinningBoardFound = false;
+            while (!lastWinningBoardFound)
+            {
+                foreach (var board in filterableBoards)
+                    board.MarkBoard(pickedNumbers[index]);
+
+
+                if (index > 4)
+                    filterableBoards = filterableBoards.Where(b => !b.IsWinningBoard());
+
+                if (filterableBoards.Count() > 1)
+                {
+                    index++;
+                    continue;
+                }
+
+                lastWinningBoardFound=true;
+                index++;
+            }
+
+            var finalBoard = filterableBoards.Single();
+            bool boardWon = false;
+            while (!boardWon)
+            {
+                finalBoard.MarkBoard(pickedNumbers[index]);
+                boardWon = finalBoard.IsWinningBoard();
+
+                if (!boardWon)
+                    index++;
+            }
+
+            return finalBoard.FindWinningScore(pickedNumbers[index]);
         }
 
     }

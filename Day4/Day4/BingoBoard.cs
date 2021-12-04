@@ -2,8 +2,7 @@
 {
     public class BingoBoard
     {
-        // Only used for debugging purposes
-        private readonly int _boardId = 0;
+        public readonly int BoardId;
         private bool[][] board = new bool[5][];
 
         private readonly Dictionary<string, (int x, int y)> boardMap = new Dictionary<string, (int, int)>();
@@ -27,7 +26,7 @@
                     boardMap[rowNumbers[j]] = (i, j);
             }
 
-            _boardId = boardId;
+            BoardId = boardId;
         }
 
         public void MarkBoard(string number)
