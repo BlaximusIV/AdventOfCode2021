@@ -6,21 +6,33 @@ using System.Threading.Tasks;
 
 namespace Day4
 {
-    public class GameExtractor
+    public class BingoSimulator
     {
-        private readonly List<string> pickedNumbers;
-
-        private readonly List<BingoBoard> bingoBoards;
+        private readonly List<string> pickedNumbers = new List<string>();
+        private readonly List<BingoBoard> bingoBoards = new List<BingoBoard>();
 
         public BingoSimulator(List<string> input)
         {
+            int boardId = 1;
+            List<string> boardRows = new List<string>();
             for (int i = 0; i < input.Count; i++)
             {
-                bool isBoard = false;
                 if (i == 0)
+                {
                     pickedNumbers = input[i].Split(',').ToList();
+                    continue;
+                }
 
-                if ()
+                var blankRow = string.IsNullOrWhiteSpace(input[i]);
+                if (!blankRow)
+                    boardRows.Add(input[i]);
+
+                if(boardRows.Count == 5)
+                {
+                    bingoBoards.Add(new BingoBoard(boardRows, boardId));
+                    boardRows.Clear();
+                    boardId++;
+                }
             }
         }
 

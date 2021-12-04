@@ -1,26 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Day4
+﻿namespace Day4
 {
     public class BingoBoard
     {
-
+        // Only used for debugging purposes
+        private readonly int _boardId = 0;
         private bool[][] board = new bool[5][];
 
         private readonly Dictionary<string, (int x, int y)> boardMap = new Dictionary<string, (int, int)>();
 
-        public BingoBoard(string[] boardRows)
+        public BingoBoard(List<string> boardRows, int boardId)
         {
+            // We know the dimensions of the board ahead of time
+            for (int i = 0; i < boardRows.Count; i++)
+                board[i] = new bool[] { false, false, false, false, false };
+
             for (int i = 0; i < boardRows.Count(); i++)
             {
-                var rowNumbers = boardRows[i].Split(' ');
-                for (int j = 0; j < rowNumbers.Length; j++)
+                var rowNumbers = boardRows[i]
+                    .Split(' ').Where(c => !string.IsNullOrWhiteSpace(c))
+                    .ToList();
+
+                if (rowNumbers.Count > 5)
+                    throw new ArgumentOutOfRangeException("Can't have more than 5 numbers");
+
+                for (int j = 0; j < rowNumbers.Count; j++)
                     boardMap[rowNumbers[j]] = (i, j);
             }
+
+            _boardId = boardId;
         }
 
         public void MarkBoard(string number)
@@ -37,7 +44,7 @@ namespace Day4
                 if (IsWinningRow(board[i]))
                     return true;
 
-            for (int i = 0; i <= board.Length; i++)
+            for (int i = 0; i < board.Length; i++)
                 if (IsWinningColumn(i))
                     return true;
 
