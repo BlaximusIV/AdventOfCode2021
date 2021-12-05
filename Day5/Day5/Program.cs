@@ -19,9 +19,9 @@ foreach (var line in inputlines)
     var plotLine = Regex.Matches(line, pattern).Single().Groups;
 
     lines.Add(new Line(
-        int.Parse(plotLine[X1].Value), 
-        int.Parse(plotLine[Y1].Value), 
-        int.Parse(plotLine[X2].Value), 
+        int.Parse(plotLine[X1].Value),
+        int.Parse(plotLine[Y1].Value),
+        int.Parse(plotLine[X2].Value),
         int.Parse(plotLine[Y2].Value)));
 }
 
@@ -29,6 +29,6 @@ foreach (var line in inputlines)
 const int MapSize = 1000;
 var map = new VentMap(MapSize);
 
-map.PlotLines(lines);
+map.PlotLines(lines, true);
 
 Console.WriteLine($"{map.GetIntersectionCount()} ");

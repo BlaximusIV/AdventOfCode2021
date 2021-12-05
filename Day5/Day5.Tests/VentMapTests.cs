@@ -24,16 +24,29 @@ namespace Day5.Tests
         private const int TestMapSize = 10;
 
         [TestMethod]
-        public void TestMethod1()
+        public void MapPlotsNonDiagonalLinesCorrectly()
         {
             // Arrange
             var map = new VentMap(TestMapSize);
 
             // Act
-            map.PlotLines(TestLines, isDebug: true);
+            map.PlotLines(TestLines, includeDiagonal: false, isDebug: true);
 
             // Assert
             Assert.AreEqual(5, map.GetIntersectionCount());
+        }
+
+        [TestMethod]
+        public void MapPlotsDiagonalLinesCorrectly()
+        {
+            // Arrange
+            var map = new VentMap(TestMapSize);
+
+            // Act
+            map.PlotLines(TestLines, includeDiagonal:true, isDebug: true);
+
+            // Assert
+            Assert.AreEqual(12, map.GetIntersectionCount());
         }
     }
 }

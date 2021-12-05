@@ -17,36 +17,43 @@ namespace Day5
                 _map[i] = new int[size];
         }
 
-        public void PlotLines(IEnumerable<Line> lines, bool isDebug = false)
+        public void PlotLines(IEnumerable<Line> lines, bool includeDiagonal = false, bool isDebug = false)
         {
             foreach(var line in lines)
-                PlotLine(line);
+                PlotLine(line, includeDiagonal);
 
             if (isDebug)
                 PrintMap();
         }
 
-        private void PlotLine(Line line)
+        private void PlotLine(Line line, bool includeDiagonal = false)
         {
-            if (line.LineType == LineType.Horizontal)
-            {
-                var start = line.X1 < line.X2 ? line.X1 : line.X2;
-                var end = start == line.X1 ? line.X2 : line.X1;
-                
-                for (int i = start; i <= end; i++)
-                    _map[line.Y1][i]++;
-
-            }
+            if (line.LineType == LineType.Horizontal) 
+                for (int i = line.LeftPoint.X; i <= line.RightPoint.X; i++)
+                    _map[line.LeftPoint.Y][i]++;
             else if (line.LineType == LineType.Vertical)
+                for (int i = line.LowPoint.Y; i <= line.HighPoint.Y; i++)
+                    _map[i][line.LeftPoint.X]++;
+            else // is diagonal
             {
-                var start = line.Y1 < line.Y2 ? line.Y1 : line.Y2;
-                var end = start == line.Y1 ? line.Y2 : line.Y1;
+                if (includeDiagonal)
+                {
+                    var plotX = line.LeftPoint.X;
+                    var plotY = line.LeftPoint.Y;
 
-                for (int i = start; i <= end; i++)
-                    _map[i][line.X1]++;
+                    while (plotX != line.RightPoint.X + 1)
+                    {
+                        _map[plotY][plotX]++;
+
+                        // Diagonals are only at 45 degrees
+                        plotX++;
+                        if (line.IsInclined)
+                            plotY++;
+                        else
+                            plotY--;
+                    }
+                }
             }
-
-            // Not currently mapping diagonal lines
         }
 
         public void PrintMap()
