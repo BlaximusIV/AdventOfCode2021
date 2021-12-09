@@ -1,6 +1,7 @@
 ﻿
 var inputLines = new List<string>();
 
+// Test Values
 //inputLines.AddRange(new[]
 //{
 //    "2199943210",
@@ -26,31 +27,63 @@ for (int i = 0; i < inputLines.Count; i++)
     topography.Add(line);
 }
 
-var riskLevelSum = 0;
+var mappedCoordinates = new List<(int X, int Y)>();
+var basinsSizes = new List<int>();
+
 for (int i = 0; i < topography.Count; i++)
 {
     for (int j = 0; j < topography[i].Count; j++)
     {
-        var current = topography[i][j];
-        bool top = true;
-        bool left = true;
-        bool right = true;
-        bool bottom = true;
-
-        // Top
-        if (i - 1 >= 0)
-            top = topography[i - 1][j] > current;
-        if (j - 1 >= 0)
-            left = topography[i][j - 1] > current;
-        if (i + 1 < topography.Count)
-            bottom = topography[i + 1][j] > current;
-        if (j + 1 < topography[i].Count)
-            right = topography[i][j + 1] > current;
-
-        // calculate and add risk level
-        if (top && left && bottom && right)
-            riskLevelSum += current + 1;
+        if (!mappedCoordinates.Contains((i, j)) && topography[i][j] != 9)
+            basinsSizes.Add(GetBasin(i, j).Count);
     }
 }
 
-Console.WriteLine($"Risk level: {riskLevelSum}");
+List<(int row,int col)> GetBasin(int row, int col)
+{
+    var basin = new List<(int row, int col)>();
+
+    AddCoordinates(basin, row, col);
+    mappedCoordinates.AddRange(basin);
+
+    return basin;
+}
+
+void AddCoordinates(List<(int row, int col)> basin, int row, int col)
+{
+    basin.Add((row, col));
+
+    // Right
+    if (!basin.Contains((row, col + 1)) 
+        && col + 1 < topography[0].Count 
+        && topography[row][col + 1] != 9)
+    {
+        AddCoordinates(basin, row, col + 1);
+    }
+    // Top
+    if (!basin.Contains((row - 1, col))
+        && row - 1 >= 0
+        && topography[row - 1][col] != 9)
+    {
+        AddCoordinates(basin, row - 1, col);
+    }
+    // Left
+    if (!basin.Contains((row, col -1))
+        && col - 1 >= 0
+        && topography[row][col - 1] != 9)
+    {
+        AddCoordinates(basin, row, col - 1);
+    }
+    // Bottom
+    if (!basin.Contains((row + 1, col))
+        && row + 1 < topography.Count
+        && topography[row + 1][col] != 9)
+    {
+        AddCoordinates(basin, row + 1, col);
+    }
+}
+
+basinsSizes.Sort();
+basinsSizes.Reverse();
+
+Console.WriteLine($"Greatest basin product: {basinsSizes[0] * basinsSizes[1] * basinsSizes[2]}");
