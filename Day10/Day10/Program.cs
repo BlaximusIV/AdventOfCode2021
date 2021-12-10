@@ -1,6 +1,7 @@
 ﻿
 var inputlines = new List<string>();
 
+// Test Lines
 //inputlines.AddRange(new string[]
 //{
 //    "[({(<(())[]>[[{[]{<()<>>",
@@ -21,7 +22,7 @@ using (var sr = new StreamReader(inputPath))
     while (!sr.EndOfStream)
         inputlines.Add(sr.ReadLine() ?? string.Empty);
 
-long bugCatchSum = 0;
+var completionScores = new List<long>();
 for (int i = 0; i < inputlines.Count; i++)
 {
     var charStack = new Stack<char>();
@@ -43,15 +44,24 @@ for (int i = 0; i < inputlines.Count; i++)
             charIndex++;
     }
 
-    if (!isLineCorrect)
+    if (isLineCorrect) // We know it's incomplete then
     {
-        var offendingChar = inputlines[i][charIndex];
-        bugCatchSum += GetCharScore(offendingChar);
+        long score = 0;
+        while (charStack.Any())
+        {
+            score *= 5;
+            score += GetCharScore(GetPartner(charStack.Pop()));
+        }
+
+        completionScores.Add(score);
     }
 }
 
-Console.Write($"Bugbash score: {bugCatchSum}");
+completionScores.Sort();
+var medianIndex = (completionScores.Count / 2);
+var medianScore = completionScores[medianIndex];
 
+Console.Write($"Median bugbash score: {medianScore}");
 
 bool IsClosingChar(char ch) => new[] { ')', ']', '>', '}' }.Contains(ch);
 
@@ -70,14 +80,9 @@ char GetPartner(char ch)
     return partner;
 }
 
-int GetCharScore(char ch)
-{
-    if (ch == ')')
-        return 3;
-    else if (ch == '>')
-        return 25137;
-    else if (ch == ']')
-        return 57;
-    else
-        return 1197;
-}
+int GetCharScore(char ch) =>
+    ch == ')' ? 1
+    : ch == ']' ? 2
+    : ch == '}' ? 3
+    : 4;
+
