@@ -33,10 +33,8 @@ var basinsSizes = new List<int>();
 for (int i = 0; i < topography.Count; i++)
 {
     for (int j = 0; j < topography[i].Count; j++)
-    {
         if (!mappedCoordinates.Contains((i, j)) && topography[i][j] != 9)
             basinsSizes.Add(GetBasin(i, j).Count);
-    }
 }
 
 List<(int row,int col)> GetBasin(int row, int col)
