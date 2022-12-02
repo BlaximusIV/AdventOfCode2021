@@ -72,56 +72,29 @@ void flash(int row, int col)
     bool hasBottom = row + 1 < Octopi.Count;
 
     // Increment neighbors
-    // top
     if (hasTop && hasLeft)
-    {
-        Octopi[row - 1][col - 1]++;
-        if (Octopi[row - 1][col - 1] >= 10)
-            flash(row - 1, col - 1);
-    }
+        IncrementOctopus(row - 1, col -1);
     if (hasTop)
-    {
-        Octopi[row - 1][col]++;
-        if (Octopi[row - 1][col] >= 10)
-            flash(row - 1, col);
-    }
+        IncrementOctopus(row - 1, col);
     if (hasTop && hasRight)
-    {
-        Octopi[row - 1][col + 1]++;
-        if (Octopi[row - 1][col + 1] >= 10)
-            flash(row - 1, col + 1);
-    }
+        IncrementOctopus(row - 1, col + 1);
     if (hasLeft)
-    {
-        Octopi[row][col - 1]++;
-        if (Octopi[row][col - 1] >= 10)
-            flash(row, col - 1);
-    }
+        IncrementOctopus(row, col - 1);
     if (hasRight)
-    {
-        Octopi[row][col + 1]++;
-        if (Octopi[row][col + 1] >= 10)
-            flash(row, col + 1);
-    }
+        IncrementOctopus(row, col + 1);
     if (hasBottom && hasLeft)
-    {
-        Octopi[row + 1][col - 1]++;
-        if (Octopi[row + 1][col - 1] >= 10)
-            flash(row + 1, col - 1);
-
-    }
+        IncrementOctopus(row + 1, col - 1);
     if (hasBottom)
-    {
-        Octopi[row + 1][col]++;
-        if (Octopi[row + 1][col] >= 10)
-            flash(row + 1, col);
-    }
+        IncrementOctopus(row + 1, col);
     if (hasBottom && hasRight)
-    {
-        Octopi[row + 1][col +1]++;
-        if (Octopi[row + 1][col + 1] >= 10)
-            flash(row + 1, col + 1);
-    }
+        IncrementOctopus(row + 1, col + 1);
+}
+
+void IncrementOctopus(int row, int col) 
+{
+    Octopi[row][col]++;
+    if (Octopi[row][col] >=10)
+        flash(row, col);
 }
 
 void Print()

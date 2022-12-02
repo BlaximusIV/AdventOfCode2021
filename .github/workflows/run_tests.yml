@@ -22,15 +22,15 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      working-directory: ./Day1
+      working-directory: ./Day01
       run: dotnet restore
       
     - name: Build
-      working-directory: ./Day1
+      working-directory: ./Day01
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
-      working-directory: ./Day1
+      working-directory: ./Day01
       run: dotnet test --no-restore --verbosity q
 
   Test_Day_2:
@@ -45,15 +45,15 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      working-directory: ./Day2
+      working-directory: ./Day02
       run: dotnet restore
       
     - name: Build
-      working-directory: ./Day2
+      working-directory: ./Day02
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
-      working-directory: ./Day2
+      working-directory: ./Day02
       run: dotnet test --no-restore --verbosity q
   
   Test_Day_3:
@@ -68,13 +68,13 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      working-directory: ./Day3
+      working-directory: ./Day03
       run: dotnet restore
       
     - name: Build
-      working-directory: ./Day3
+      working-directory: ./Day03
       run: dotnet build --configuration Release --no-restore
     
     - name: Test
-      working-directory: ./Day3
+      working-directory: ./Day03
       run: dotnet test --no-restore --verbosity q
